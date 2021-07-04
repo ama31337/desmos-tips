@@ -12,7 +12,7 @@ APP_PATH=`which $APP_NAME`
 CHAIN_ID="morpheus-apollo-1"
 DENOM="udaric"
 NODE_URL="http://127.0.0.1:26657"
-MIN_WITHDRAW=1000000
+MIN_WITHDRAW=500000
 MIN_BALANCE=100000
 MIN_STAKE=1000000
 GAS_TOTAL="--gas auto --gas-prices 0.01udaric --gas-adjustment 1.4"
@@ -20,6 +20,7 @@ GAS_TOTAL="--gas auto --gas-prices 0.01udaric --gas-adjustment 1.4"
 # set acc & pass
 VAL_ACCOUNT="lux8net"
 #DEL_ACCOUNT="delegator"
+WITHDRAW_COMM="true"
 PASS=$(cat ${HOME}/ppp)
 VAL_ADDRESS=$(echo -e ${PASS} | ${APP_PATH} keys show ${VAL_ACCOUNT} -a)
 #DEL_ADDRESS=$(echo -e ${PASS} | ${APP_PATH} keys show ${DEL_ACCOUNT} -a)
@@ -75,7 +76,7 @@ echo "commission balance:" $COMMISSION_BALANCE2
 sleep 5
 
 # withdraw commissions
-if [[ $(bc -l <<< "${COMMISSION_BALANCE} > ${MIN_WITHDRAW}") -eq 1 ]]
+if [[ $(bc -l <<< "${COMMISSION_BALANCE} > ${MIN_WITHDRAW}") -eq 1 ]] && [[ "$WITHDRAW_COMM" =~ true ]]
   then
     echo "let's withdraw validator commissions"
     echo -e "${PASS}\n" | ${APP_NAME} tx distribution withdraw-rewards ${VALOPER} --commission --from ${VAL_ACCOUNT} --chain-id ${CHAIN_ID} --node ${NODE_URL} ${GAS_TOTAL} --yes
