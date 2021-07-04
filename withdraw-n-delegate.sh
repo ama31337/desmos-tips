@@ -28,7 +28,6 @@ VALOPER=$(echo ${PASS} | ${APP_PATH} keys show ${VAL_ACCOUNT} --bech val --addre
 
 # check rewards
 VAL_REWARDS=$(${APP_PATH} q distribution rewards ${VAL_ADDRESS} ${VALOPER} --chain-id ${CHAIN_ID} --node ${NODE_URL} -oj | jq -r '.rewards | .[].amount' | egrep -o '[0-9]+\.' | tr -d .)
-
 #DEL_REWARDS=$(${APP_PATH} q distribution rewards ${DEL_ADDRESS} ${VALOPER} --chain-id ${CHAIN_ID} --node ${NODE_URL} -oj | jq -r '.rewards | .[].amount' | egrep -o '[0-9]+\.' | tr -d .)
 
 VAL_REWARDS2=$(bc -l <<< "$VAL_REWARDS/1000000")
