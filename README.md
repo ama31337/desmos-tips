@@ -18,7 +18,7 @@ vim $HOME/desmos-tips/withdraw-n-delegate.sh
 - VAL_ACCOUNT: your validator wallet name
 - DEL_ACCOUNT: your delegator account * if you have separate account for delegations and also want to setup auto-redelegation, uncomment lines related to delegator (start with "DEL_*")
 
-#3. Script need you node password to operate, save it to $HOME/ppp:
+#3. Script need your wallet password to operate, save it to $HOME/ppp:
 ```sh
 echo "<your pass>" > $HOME/ppp
 ```
