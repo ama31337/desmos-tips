@@ -1,5 +1,5 @@
 ### Script to automate desmos validator redelegations
-This guide is testet on Ubuntu 20.04 and probably will work flawless on 18 as well.
+This guide is testet on Ubuntu 20.04 and probably will work flawless on other distros as well.
 
 ### Installation
 #1. Clone this repository to your server
