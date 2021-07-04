@@ -2,11 +2,11 @@
 This guide is testet on Ubuntu 20.04 and probably will work flawless on 18 as well.
 
 ### Installation
-1. Clone this repository to your server
+#1. Clone this repository to your server
 ```sh
 cd $HOME && git clone https://github.com/ama31337/desmos-tips.git
 ```
-2. Check and edit if necessary variables in script
+#2. Check and edit if necessary variables in script
 ```sh
 vim $HOME/desmos-tips/withdraw-n-delegate.sh
 ```
@@ -18,11 +18,12 @@ vim $HOME/desmos-tips/withdraw-n-delegate.sh
 - VAL_ACCOUNT: your validator wallet name
 - DEL_ACCOUNT: your delegator account * if you have separate account for delegations and also want to setup auto-redelegation, uncomment lines related to delegator (start with "DEL_*")
 
-3. Script need you node password to operate, save it to $HOME/ppp:
+#3. Script need you node password to operate, save it to $HOME/ppp:
 ```sh
 echo "<your pass>" > $HOME/ppp
+```
 
-4. Add auto-redelegation script to crontab
+#4. Add auto-redelegation script to crontab
 ```sh
 cd $HOME/desmos-tips && ./add_to_cron.sh
 ```
