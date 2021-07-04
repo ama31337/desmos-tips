@@ -17,9 +17,7 @@ vim $HOME/desmos-tips/withdraw-n-delegate.sh
 - MIN_STAKE: minimal amount to stake
 - VAL_ACCOUNT: your validator wallet name
 - DEL_ACCOUNT: your delegator account * if you have separate account for delegations and also want to setup auto-redelegation, uncomment lines related to delegator (start with "DEL_*")
-
-- NB! this script also withdraw your validator commission and redelegate it.
-If you want to keep your commissions undelegated, comment lines related to it: [line  77-84](https://github.com/ama31337/desmos-tips/blob/main/withdraw-n-delegate.sh#L77)
+- WITHDRAW_COMM: NB! this script withdraw your validator commission and redelegate it. If you want to keep your commissions undelegated, set this variable to "false".
 
 3. Script need your wallet password to operate, save it to $HOME/ppp:
 ```sh
