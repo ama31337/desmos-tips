@@ -61,6 +61,28 @@ sleep 5
 #    echo "no delegator rewards to withdraw"
 #fi
 
+# commissions status
+COMMISSION_STATUS=$(echo -e $(cat ${HOME}/ppp) | ${APP_NAME} query distribution commission ${VALOPER} --chain-id ${CHAIN_ID} --node ${NODE_URL} --output json)
+COMMISSION_BALANCE=$(echo ${COMMISSION_STATUS} | jq -r .commission | jq -r .[].amount)
+COMMISSION_BALANCE2=$(bc -l <<< "$COMMISSION_BALANCE/1000000")
+
+# echo data
+echo ""
+echo "-------------------------"
+echo `date`
+echo "commission balance:" $COMMISSION_BALANCE2
+
+sleep 5
+
+# withdraw commissions
+if [[ $(bc -l <<< "${COMMISSION_BALANCE} > ${MIN_WITHDRAW}") -eq 1 ]]
+  then
+    echo "let's withdraw validator commissions"
+    echo -e "${PASS}\n" | ${APP_NAME} tx distribution withdraw-rewards ${VALOPER} --commission --from ${VAL_ACCOUNT} --chain-id ${CHAIN_ID} --node ${NODE_URL} ${GAS_TOTAL} --yes
+  else
+    echo "no commissions to withdraw"
+fi
+
 sleep 30
 
 # check updated balance
